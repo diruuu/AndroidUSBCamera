@@ -26,6 +26,10 @@
 # include <config.h>
 #endif
 
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
 #include <android/legacy_stdlib_inlines.h>
 #include "lame.h"
 #include "machine.h"

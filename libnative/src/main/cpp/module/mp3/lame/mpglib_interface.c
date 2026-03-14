@@ -29,7 +29,12 @@
 #endif
 
 #ifdef HAVE_MPGLIB
-#define hip_global_struct mpstr_tag 
+#define hip_global_struct mpstr_tag
+
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
 #include "lame.h"
 #include "machine.h"
 #include "encoder.h"

@@ -28,7 +28,6 @@ import com.jiangdg.ausbc.camera.bean.PreviewSize
 import com.jiangdg.ausbc.callback.*
 import com.jiangdg.ausbc.camera.CameraUVC
 import com.jiangdg.ausbc.render.effect.AbstractEffect
-import com.jiangdg.ausbc.render.effect.EffectBlackWhite
 import com.jiangdg.ausbc.render.env.RotateType
 import com.jiangdg.ausbc.utils.Logger
 import com.jiangdg.ausbc.utils.SettableFuture
@@ -175,7 +174,7 @@ abstract class CameraActivity: BaseActivity(), ICameraStateCallBack {
     private fun handleTextureView(textureView: TextureView) {
         textureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
             override fun onSurfaceTextureAvailable(
-                surface: SurfaceTexture?,
+                surface: SurfaceTexture,
                 width: Int,
                 height: Int
             ) {
@@ -183,31 +182,31 @@ abstract class CameraActivity: BaseActivity(), ICameraStateCallBack {
             }
 
             override fun onSurfaceTextureSizeChanged(
-                surface: SurfaceTexture?,
+                surface: SurfaceTexture,
                 width: Int,
                 height: Int
             ) {
                 surfaceSizeChanged(width, height)
             }
 
-            override fun onSurfaceTextureDestroyed(surface: SurfaceTexture?): Boolean {
+            override fun onSurfaceTextureDestroyed(surface: SurfaceTexture): Boolean {
                 unRegisterMultiCamera()
                 return false
             }
 
-            override fun onSurfaceTextureUpdated(surface: SurfaceTexture?) {
+            override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {
             }
         }
     }
 
     private fun handleSurfaceView(surfaceView: SurfaceView) {
         surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
-            override fun surfaceCreated(holder: SurfaceHolder?) {
+            override fun surfaceCreated(holder: SurfaceHolder) {
                 registerMultiCamera()
             }
 
             override fun surfaceChanged(
-                holder: SurfaceHolder?,
+                holder: SurfaceHolder,
                 format: Int,
                 width: Int,
                 height: Int
@@ -215,7 +214,7 @@ abstract class CameraActivity: BaseActivity(), ICameraStateCallBack {
                 surfaceSizeChanged(width, height)
             }
 
-            override fun surfaceDestroyed(holder: SurfaceHolder?) {
+            override fun surfaceDestroyed(holder: SurfaceHolder) {
                 unRegisterMultiCamera()
             }
         })

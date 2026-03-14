@@ -1,7 +1,7 @@
 /*
  * Copyright 2017-2023 Jiangdg
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Jiangdg
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -11,7 +11,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+ Jiangdg.
  */
 package com.jiangdg.ausbc.base
 
@@ -175,7 +175,7 @@ abstract class CameraFragment : BaseFragment(), ICameraStateCallBack {
     private fun handleTextureView(textureView: TextureView) {
         textureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
             override fun onSurfaceTextureAvailable(
-                surface: SurfaceTexture?,
+                surface: SurfaceTexture,
                 width: Int,
                 height: Int
             ) {
@@ -183,31 +183,31 @@ abstract class CameraFragment : BaseFragment(), ICameraStateCallBack {
             }
 
             override fun onSurfaceTextureSizeChanged(
-                surface: SurfaceTexture?,
+                surface: SurfaceTexture,
                 width: Int,
                 height: Int
             ) {
                 surfaceSizeChanged(width, height)
             }
 
-            override fun onSurfaceTextureDestroyed(surface: SurfaceTexture?): Boolean {
+            override fun onSurfaceTextureDestroyed(surface: SurfaceTexture): Boolean {
                 unRegisterMultiCamera()
                 return false
             }
 
-            override fun onSurfaceTextureUpdated(surface: SurfaceTexture?) {
+            override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {
             }
         }
     }
 
     private fun handleSurfaceView(surfaceView: SurfaceView) {
         surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
-            override fun surfaceCreated(holder: SurfaceHolder?) {
+            override fun surfaceCreated(holder: SurfaceHolder) {
                 registerMultiCamera()
             }
 
             override fun surfaceChanged(
-                holder: SurfaceHolder?,
+                holder: SurfaceHolder,
                 format: Int,
                 width: Int,
                 height: Int
@@ -215,7 +215,7 @@ abstract class CameraFragment : BaseFragment(), ICameraStateCallBack {
                 surfaceSizeChanged(width, height)
             }
 
-            override fun surfaceDestroyed(holder: SurfaceHolder?) {
+            override fun surfaceDestroyed(holder: SurfaceHolder) {
                 unRegisterMultiCamera()
             }
         })

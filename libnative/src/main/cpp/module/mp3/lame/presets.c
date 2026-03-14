@@ -24,6 +24,10 @@
 # include <config.h>
 #endif
 
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+
 #include "lame.h"
 #include "machine.h"
 #include "set_get.h"

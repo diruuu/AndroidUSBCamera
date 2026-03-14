@@ -1,6 +1,4 @@
-
 cmake_minimum_required(VERSION 3.10.2)
-
 
 project("nativelib")
 
@@ -11,7 +9,6 @@ aux_source_directory(${CMAKE_SOURCE_DIR}/module/mp3/lame SRC_LAME)
 add_library(
         nativelib
         SHARED
-
         ${SRC_LAME}
         utils/logger.cpp
         module/yuv/yuv.cpp
@@ -19,6 +16,9 @@ add_library(
         proxy/proxy_yuv.cpp
         proxy/proxy_mp3.cpp
         nativelib.cpp)
+
+# Support 16KB page size
+target_link_options(nativelib PRIVATE "-Wl,-z,max-page-size=16384")
 
 find_library(
         log-lib

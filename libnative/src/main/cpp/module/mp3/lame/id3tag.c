@@ -45,12 +45,15 @@
 //#  define strchr index
 //#  define strrchr rindex
 //# endif
-char   *strchr(), *strrchr();
+//char   *strchr(), *strrchr();
 //# ifndef HAVE_MEMCPY
 //#  define memcpy(d, s, n) bcopy ((s), (d), (n))
 //# endif
 #endif
 
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
 
 #include "lame.h"
 #include "machine.h"

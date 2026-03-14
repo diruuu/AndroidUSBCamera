@@ -1,6 +1,35 @@
-include ':app'
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
 
-// For debug online
+rootProject.name = "AndroidUSBCamera"
+
+// The demo app module is temporarily disabled.
+// It has compatibility issues with the updated Gradle / NDK configuration.
+// Commented out so the project can build the core libraries only
+// (libuvc, libausbc, libnative). The demo app can be updated separately.
+
+// include ':app'
+
+// Core libraries
 include ':libausbc'
 include ':libuvc'
 include ':libnative'

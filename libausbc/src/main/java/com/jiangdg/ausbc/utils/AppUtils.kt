@@ -7,8 +7,7 @@
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
+ * Unless required by applicable law or agreed to in Jiangdg
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
@@ -39,7 +38,7 @@ object AppUtils {
         val intent: Intent? = pckgManager.getLaunchIntentForPackage(ctx.packageName)
         intent?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         val pendingIntent: PendingIntent = PendingIntent.getActivity(
-            ctx.applicationContext, 0, intent, PendingIntent.FLAG_ONE_SHOT
+            ctx.applicationContext, 0, intent, PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
         val manager: AlarmManager = ctx.applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         manager.set(AlarmManager.RTC, System.currentTimeMillis() + 1000, pendingIntent)
@@ -58,7 +57,8 @@ object AppUtils {
         val packageManager: PackageManager = ctx.packageManager
         try {
             val packageInfo: PackageInfo = packageManager.getPackageInfo(ctx.packageName, 0)
-            val labelRes: Int = packageInfo.applicationInfo.labelRes
+            val labelRes: Int = packageInfo.applicationInfo?.labelRes ?: 0
+            if (labelRes == 0) return null
             return ctx.getString(labelRes)
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
