@@ -61,6 +61,16 @@ android {
 		sourceCompatibility rootProject.ext.javaSourceCompatibility
         targetCompatibility rootProject.ext.javaTargetCompatibility
 	}
+
+	// Explicit single-variant publication so JitPack's auto-injected
+	// publishing produces a correct 'release' component (avoids the
+	// "Misconfigured for Variant 'release'" warning the multi-module
+	// auto-publish hit on libausbc/libnative).
+	publishing {
+		singleVariant("release") {
+			withSourcesJar()
+		}
+	}
 }
 
 dependencies {
