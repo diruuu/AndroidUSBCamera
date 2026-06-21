@@ -4,5 +4,4 @@ before_install:
   - sdk install java 17.0.14-amzn
   - sdk use java 17.0.14-amzn
 install:
-  - FLAGS="-Pgroup=com.github.diruuu -Pversion=$VERSION --stacktrace"
-  - ./gradlew :libuvc:publishToMavenLocal $FLAGS || ./gradlew publishToMavenLocal $FLAGS -x generateMetadataFileForLibausbcPublication -x generateMetadataFileForLibnativePublication
+  - ./gradlew :libuvc:publishToMavenLocal -Pgroup=com.github.diruuu -Pversion=$VERSION --stacktrace

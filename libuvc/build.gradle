@@ -1,5 +1,6 @@
 plugins {
 	alias(libs.plugins.android.library)
+	id 'maven-publish'
 }
 
 android {
@@ -81,4 +82,21 @@ dependencies {
 	androidTestImplementation libs.androidx.espresso.core
 
 	implementation libs.xlog
+}
+
+// Explicit Maven publication so `:libuvc:publishToMavenLocal` exists for
+// JitPack. A custom jitpack.yml install command bypasses JitPack's automatic
+// maven-publish injection, so we define it ourselves. group/version come from
+// the -Pgroup / -Pversion JitPack passes (com.github.diruuu / <tag>).
+afterEvaluate {
+	publishing {
+		publications {
+			release(MavenPublication) {
+				from components.release
+				groupId = (project.findProperty('group') ?: 'com.github.diruuu').toString()
+				artifactId = 'libuvc'
+				version = (project.findProperty('version') ?: rootProject.ext.versionNameString).toString()
+			}
+		}
+	}
 }
